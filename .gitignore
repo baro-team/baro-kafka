@@ -4,3 +4,5 @@ build/
 *.iml
 .env
 application.yml
+k8s/secret.yaml
+baro-kafka-consumer.tar

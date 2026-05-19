@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: baro-kafka-consumer
+  namespace: kafka
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: baro-kafka-consumer
+  template:
+    metadata:
+      labels:
+        app: baro-kafka-consumer
+    spec:
+      containers:
+        - name: baro-kafka-consumer
+          image: docker.io/library/baro-kafka-consumer:latest
+          imagePullPolicy: Never
+          envFrom:
+            - secretRef:
+                name: baro-kafka-secret
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "100m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
