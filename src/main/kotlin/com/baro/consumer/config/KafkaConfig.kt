@@ -17,8 +17,8 @@ class KafkaConfig {
 
     @Bean
     fun vehicleDataTopic(): NewTopic = TopicBuilder.name(topic)
-        .partitions(3)
-        .replicas(2)
+        .partitions(1)
+        .replicas(1)
         .build()
 
     @Bean
