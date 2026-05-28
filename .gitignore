@@ -19,5 +19,13 @@ baro-kafka-consumer.tar
 **/*.key
 **/*.p12
 **/*.jks
+
+# SSH keys (확장자 없는 경우 포함)
+temp_key
+temp_key.pub
+
+# EC2 userdata: 내부 VPC IP·DNS 구조 포함 — 환경별 파일
+userdata.sh
+
 .DS_Store
 Thumbs.db
