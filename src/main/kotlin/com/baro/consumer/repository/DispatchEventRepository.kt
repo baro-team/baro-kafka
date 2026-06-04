@@ -1,10 +1,12 @@
 package com.baro.consumer.repository
 
 import com.baro.consumer.model.DispatchEventData
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
 import org.springframework.jdbc.core.JdbcTemplate
 import org.springframework.stereotype.Repository
 
 @Repository
+@ConditionalOnProperty(name = ["app.consumer.timescaledb.enabled"], havingValue = "true", matchIfMissing = true)
 class DispatchEventRepository(private val jdbcTemplate: JdbcTemplate) {
     fun save(data: DispatchEventData) {
         val sql =
