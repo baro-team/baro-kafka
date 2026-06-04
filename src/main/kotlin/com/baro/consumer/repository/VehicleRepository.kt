@@ -20,8 +20,8 @@ class VehicleRepository(
             """
             INSERT INTO vehicle_data (
                 car_id, latitude, longitude, speed, battery, timestamp,
-                heading, tire_pressure, engine_oil, brake_oil, washer_fluid, ext_temp
-            ) VALUES (?, ?, ?, ?, ?, ?::timestamptz, ?, ?::jsonb, ?, ?, ?, ?)
+                status, heading, tire_pressure, engine_oil, brake_oil, washer_fluid, ext_temp
+            ) VALUES (?, ?, ?, ?, ?, ?::timestamptz, ?, ?, ?::jsonb, ?, ?, ?, ?)
             """.trimIndent()
 
         val tirePressureJson = data.tirePressure?.let { objectMapper.writeValueAsString(it) }
@@ -29,7 +29,7 @@ class VehicleRepository(
         jdbcTemplate.update(
             sql,
             data.carId, data.latitude, data.longitude, data.speed, data.battery, data.timestamp,
-            data.heading, tirePressureJson, data.engineOil, data.brakeOil, data.washerFluid, data.extTemp,
+            data.status, data.heading, tirePressureJson, data.engineOil, data.brakeOil, data.washerFluid, data.extTemp,
         )
 
         logger.debug { "Saved to DB: $data" }
