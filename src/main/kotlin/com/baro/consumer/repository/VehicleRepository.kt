@@ -3,12 +3,14 @@ package com.baro.consumer.repository
 import com.baro.consumer.model.VehicleData
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.github.oshai.kotlinlogging.KotlinLogging
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
 import org.springframework.jdbc.core.JdbcTemplate
 import org.springframework.stereotype.Repository
 
 private val logger = KotlinLogging.logger {}
 
 @Repository
+@ConditionalOnProperty(name = ["app.consumer.timescaledb.enabled"], havingValue = "true", matchIfMissing = true)
 class VehicleRepository(
     private val jdbcTemplate: JdbcTemplate,
     private val objectMapper: ObjectMapper,
