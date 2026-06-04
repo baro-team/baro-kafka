@@ -12,15 +12,15 @@ import org.springframework.kafka.config.TopicBuilder
 
 @Configuration
 class KafkaConfig {
-
     @Value("\${app.kafka.topic}")
     private lateinit var topic: String
 
     @Bean
-    fun vehicleDataTopic(): NewTopic = TopicBuilder.name(topic)
-        .partitions(1)
-        .replicas(1)
-        .build()
+    fun vehicleDataTopic(): NewTopic =
+        TopicBuilder.name(topic)
+            .partitions(1)
+            .replicas(1)
+            .build()
 
     @Bean
     fun objectMapper(): ObjectMapper {
@@ -30,4 +30,3 @@ class KafkaConfig {
         }
     }
 }
-

@@ -14,9 +14,8 @@ private val logger = KotlinLogging.logger {}
 @ConditionalOnProperty(name = ["app.consumer.timescaledb.enabled"], havingValue = "true", matchIfMissing = true)
 class VehicleConsumer(
     private val repository: VehicleRepository,
-    private val objectMapper: ObjectMapper
+    private val objectMapper: ObjectMapper,
 ) {
-
     @KafkaListener(topics = ["\${app.kafka.topic}"], groupId = "\${spring.kafka.consumer.group-id}")
     fun consume(message: String) {
         try {

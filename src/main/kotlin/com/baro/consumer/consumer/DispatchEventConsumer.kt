@@ -16,7 +16,6 @@ class DispatchEventConsumer(
     private val repository: DispatchEventRepository,
     private val objectMapper: ObjectMapper,
 ) {
-
     @KafkaListener(topics = ["\${app.kafka.dispatch-events-topic}"], groupId = "\${spring.kafka.consumer.group-id}")
     fun consume(message: String) {
         try {

@@ -6,9 +6,9 @@ import org.springframework.stereotype.Repository
 
 @Repository
 class DispatchEventRepository(private val jdbcTemplate: JdbcTemplate) {
-
     fun save(data: DispatchEventData) {
-        val sql = """
+        val sql =
+            """
             INSERT INTO dispatch_events (
                 dispatch_id, user_id, car_id,
                 start_latitude, start_longitude,
@@ -17,7 +17,7 @@ class DispatchEventRepository(private val jdbcTemplate: JdbcTemplate) {
                 status, requested_at
             ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?::timestamptz)
             ON CONFLICT (dispatch_id) DO NOTHING
-        """.trimIndent()
+            """.trimIndent()
 
         jdbcTemplate.update(
             sql,
