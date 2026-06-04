@@ -2,6 +2,7 @@ package com.baro.consumer.config
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.PropertyNamingStrategies
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import org.apache.kafka.clients.admin.NewTopic
 import org.springframework.beans.factory.annotation.Value
@@ -25,6 +26,7 @@ class KafkaConfig {
     fun objectMapper(): ObjectMapper {
         return jacksonObjectMapper().apply {
             propertyNamingStrategy = PropertyNamingStrategies.SNAKE_CASE
+            registerModule(JavaTimeModule())
         }
     }
 }

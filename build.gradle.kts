@@ -25,6 +25,10 @@ dependencies {
 
     // JSON Serialization
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+    implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310")
+
+    // Redis
+    implementation("org.springframework.boot:spring-boot-starter-data-redis")
 
     // JDBC for TimescaleDB (PostgreSQL 기반)
     runtimeOnly("org.postgresql:postgresql")

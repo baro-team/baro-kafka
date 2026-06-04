@@ -1,11 +1,8 @@
 package com.baro.consumer.repository
 
 import com.baro.consumer.model.DispatchEventData
-import io.github.oshai.kotlinlogging.KotlinLogging
 import org.springframework.jdbc.core.JdbcTemplate
 import org.springframework.stereotype.Repository
-
-private val logger = KotlinLogging.logger {}
 
 @Repository
 class DispatchEventRepository(private val jdbcTemplate: JdbcTemplate) {
@@ -19,6 +16,7 @@ class DispatchEventRepository(private val jdbcTemplate: JdbcTemplate) {
                 fare, distance_km, estimated_time,
                 status, requested_at
             ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?::timestamptz)
+            ON CONFLICT (dispatch_id) DO NOTHING
         """.trimIndent()
 
         jdbcTemplate.update(
@@ -27,9 +25,7 @@ class DispatchEventRepository(private val jdbcTemplate: JdbcTemplate) {
             data.startLatitude, data.startLongitude,
             data.endLatitude, data.endLongitude,
             data.fare, data.distanceKm, data.estimatedTime,
-            data.status, data.requestedAt,
+            data.status, data.requestedAt.toString(),
         )
-
-        logger.debug { "Saved dispatch event: dispatchId=${data.dispatchId}" }
     }
 }
