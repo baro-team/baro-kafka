@@ -12,6 +12,8 @@ data class VehicleData(
     val battery: Int,
     // 데이터 전송 시간
     val timestamp: String,
+    // 배차 가능 여부 (idle / dispatched / on_trip 등)
+    val status: String? = null,
     // 진행방향 방위각
     val heading: Float? = null,
     // JSONB

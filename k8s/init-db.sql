@@ -5,6 +5,7 @@ CREATE TABLE IF NOT EXISTS vehicle_data (
     longitude   FLOAT             NOT NULL,
     speed       INT               NOT NULL,
     battery     INT               NOT NULL,
+    status      VARCHAR(50),
     heading     FLOAT,
     tire_pressure  JSONB,
     engine_oil     FLOAT,
