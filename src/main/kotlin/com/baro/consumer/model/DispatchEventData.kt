@@ -1,5 +1,7 @@
 package com.baro.consumer.model
 
+import java.time.Instant
+
 data class DispatchEventData(
     val dispatchId: Long,
     val userId: Long,
@@ -12,5 +14,5 @@ data class DispatchEventData(
     val distanceKm: Double,
     val estimatedTime: Int,
     val status: String,
-    val requestedAt: String,
+    val requestedAt: Instant,
 )

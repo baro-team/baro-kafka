@@ -15,10 +15,19 @@ spec:
     spec:
       nodeSelector:
         kubernetes.io/hostname: k3s-master
+      hostAliases:
+        - ip: "10.20.10.31"
+          hostnames:
+            - "kafka.baro.internal"
       containers:
         - name: baro-kafka-consumer
           image: docker.io/library/baro-kafka-consumer:latest
           imagePullPolicy: Never
+          env:
+            - name: TIMESCALEDB_CONSUMER_ENABLED
+              value: "true"
+            - name: GEO_CONSUMER_ENABLED
+              value: "false"
           envFrom:
             - secretRef:
                 name: baro-kafka-secret
